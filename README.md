@@ -1,4 +1,4 @@
-# react-tailwind-supabase-snippets
+# Supabase Snippets
 
 # Setting Supabase Trigger for Each New User
 ```
