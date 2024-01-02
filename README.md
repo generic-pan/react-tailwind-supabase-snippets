@@ -1,6 +1,6 @@
 # react-tailwind-supabase-snippets
 
-# Setting Supabase Trigger
+# Setting Supabase Trigger for Each New User
 ```
 create function public.handle_new_user()
 returns trigger
@@ -18,4 +18,11 @@ $$;
 create trigger on_auth_user_created
   after insert on auth.users
   for each row execute procedure public.handle_new_user();
+```
+
+# Allowing Supabase RLS - Each User Can Edit Their Own
+```
+create policy "User can manage their own subscriptions." on subscriptions for all to authenticated using (auth.uid () = account_id)
+with
+  check (auth.uid () = account_id);
 ```
