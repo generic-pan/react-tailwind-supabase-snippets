@@ -27,6 +27,43 @@ with
   check (auth.uid () = account_id);
 ```
 
+# Connecting with client JS (pastable)
+```
+const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
+
+async function getMyInfo(table) {
+    try {
+        const { data, error } = await supabase.from(table).select('*');
+        if (error) throw error;
+        return data;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+async function upsertMyInfo(table, data) {
+    try {
+        const { error } = await supabase.from(table).upsert(data);
+        if (error) throw error;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+async function hasMyInfo(table) {
+    try {
+        const { data, error } = await supabase.from(table).select('*');
+        if (error) throw error;
+        return data.length > 0;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+```
+
 # Connecting with client JS
 ```
 const supabase = createClient('https://{{URL}}.supabase.co', '{{API_KEY}}');
