@@ -63,3 +63,21 @@ async function hasMyInfo(table) {
     }
 }
 ```
+
+# Display my information
+```
+import { useEffect, useState } from "react"
+
+const [profileData, setProfileData] = useState({ city: 'N/A', org_type: 'N/A' });
+useEffect(() => {
+    async function fetchProfileData() {
+        const data = await getMyInfo("profiles");
+        setProfileData(data);
+    }
+    fetchProfileData();
+}, []);
+
+
+<div><span className="font-bold">City:</span> {profileData.city}</div>
+<div className="mt-1"><span className="mt-3 font-bold">Organization Type:</span> {profileData.org_type}</div>
+```
