@@ -35,7 +35,7 @@ async function getMyInfo(table) {
     try {
         const { data, error } = await supabase.from(table).select('*');
         if (error) throw error;
-        return data;
+        return data[0];
     }
     catch (error) {
         console.log(error);
@@ -62,27 +62,4 @@ async function hasMyInfo(table) {
         console.log(error);
     }
 }
-```
-
-# Connecting with client JS
-```
-const supabase = createClient('https://{{URL}}.supabase.co', '{{API_KEY}}');
-```
-Inserting
-```
-const { data, error } = await supabase
-                .from('projects')
-                .insert(
-                {
-                    name: leadObj.name,
-                    deadline_date: (leadObj.deadline).toLocaleString('en-US'),
-                    owner_id: (await supabase.auth.getUser()).data.user.id },
-                )
-```
-Selecting
-```
-const { data, error } = await supabase
-              .from('projects')
-              .select("*")
-              .eq('id', 'f83f2fh1')
 ```
