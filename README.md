@@ -29,6 +29,7 @@ with
 
 # Connecting with client JS (pastable)
 ```
+import { createClient } from '@supabase/supabase-js'; // Import Supabase client
 const supabase = createClient(process.env.REACT_APP_SUPABASE_URL, process.env.REACT_APP_SUPABASE_KEY);
 
 async function getMyInfo(table) {
